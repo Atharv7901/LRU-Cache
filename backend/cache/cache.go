@@ -44,3 +44,28 @@ func (c *LRUCache) Get(key string) (interface{}, bool) {
 	}
 	return nil, false
 }
+
+func (c *LRUCache) Set(key string, value interface{}, duration time.Duration) {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+
+	if elem, ok := c.Items[key]; ok {
+		c.CacheData.MoveToFront(elem)
+		elem.Value.(*CacheItem).Value = value
+		elem.Value.(*CacheItem).Expiration = time.Now().Add(duration).Unix()
+		return
+	}
+
+	item := &CacheItem{
+		Key: key,
+		Value: value,
+		Expiration: time.Now().Add(duration).Unix(),
+	}
+
+	elem := c.CacheData.PushFront(item)
+	c.Items[key] = elem
+
+	if c.CacheData.Len() > c.Capacity {
+		c.removeOldest()
+	}
+}
