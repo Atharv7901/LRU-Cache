@@ -69,3 +69,12 @@ func (c *LRUCache) Set(key string, value interface{}, duration time.Duration) {
 		c.removeOldest()
 	}
 }
+
+func (c *LRUCache) Delete(key string) {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+
+	if elem, ok := c.Items[key]; ok {
+		c.removeElement(elem)
+	}
+}
