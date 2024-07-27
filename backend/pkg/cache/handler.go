@@ -59,3 +59,19 @@ func (h *CacheHandler) DeleteHandler(c *gin.Context) {
 	h.Cache.Delete(key)
 	c.Status(http.StatusOK)
 }
+
+func (h *CacheHandler) CacheStateHandler(c *gin.Context) {
+	h.Cache.mu.RLock()
+	defer h.Cache.mu.RUnlock()
+
+	var state []map[string]interface{}
+	for elem := h.Cache.CacheData.Front(); elem != nil; elem = elem.Next() {
+		item := elem.Value.(*CacheItem)
+		state = append(state, map[string]interface{}{
+			"key":        item.Key,
+			"value":      item.Value,
+			"expiration": item.Expiration,
+		})
+	}
+	c.JSON(http.StatusOK, state)
+}

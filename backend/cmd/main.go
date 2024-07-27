@@ -15,6 +15,7 @@ func main() {
 	r.GET("/get", handler.GetHandler)
 	r.POST("/set", handler.SetHandler)
 	r.DELETE("/delete", handler.DeleteHandler)
+	r.GET("/cache/state", handler.CacheStateHandler)
 
 	fmt.Println("Server running on 8000")
 	if err := r.Run(":8000"); err != nil {
