@@ -4,12 +4,14 @@ import (
 	"fmt"
 	"log"
 	"lrucache/pkg/cache"
+	"lrucache/pkg/middleware"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	r := gin.Default()
+	r.Use(middleware.CORS())
 	handler := cache.NewCacheHandler(5)
 
 	r.GET("/get", handler.GetHandler)
