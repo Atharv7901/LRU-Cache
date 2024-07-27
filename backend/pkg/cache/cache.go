@@ -40,7 +40,7 @@ func (c *LRUCache) Get(key string) (interface{}, bool) {
 			return nil, false
 		}
 		c.CacheData.MoveToFront(elem)
-		return item.Value, true
+		return item, true
 	}
 	return nil, false
 }
