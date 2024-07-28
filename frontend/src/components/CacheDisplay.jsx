@@ -3,6 +3,7 @@ import CacheList from "./CacheList";
 import {Button, Grid} from "@mui/material";
 import CacheForm from "./CacheForm";
 import CacheGetItem from "./CacheGetItem";
+import CacheGetAPI from "./CacheGetAPI";
 
 const CacheDisplay = () => {
   const [cacheState, setCacheState] = useState({});
@@ -65,6 +66,7 @@ const CacheDisplay = () => {
         </Grid>
       </Grid>
       <CacheForm open={dialogOpen} handleClose={handleDialogClose} />
+      <CacheGetAPI />
       <CacheGetItem />
     </div>
   );

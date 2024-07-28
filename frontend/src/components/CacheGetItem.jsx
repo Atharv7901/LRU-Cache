@@ -2,26 +2,34 @@ import {Box, Button, TextField} from "@mui/material";
 import {useEffect, useState} from "react";
 import {useGetCacheItemQuery} from "../services/cacheApi";
 import CacheItem from "./CacheItem";
+import {useDispatch} from "react-redux";
+import {updateCacheKey} from "../slices/cacheSlice";
 
 const CacheGetItem = () => {
   const [key, setKey] = useState("");
   const [skip, setSkip] = useState(true);
+  const [cacheData, setCacheData] = useState(null);
+  const dispatch = useDispatch();
 
-  const cacheItem = useGetCacheItemQuery(key, {skip: skip});
+  const {data, error, refetch} = useGetCacheItemQuery(key, {skip});
 
   useEffect(() => {
     if (!skip) {
-      cacheItem.refetch().then((result) => {
+      refetch().then((result) => {
         if (result.isSuccess) {
-          cacheItem = result;
+          setCacheData(result.data);
+          dispatch(updateCacheKey(key));
+        } else if (result.isError) {
+          setCacheData(null);
         }
       });
     }
-  }, [skip]);
+  }, [skip, refetch]);
 
   const handleGet = () => {
     setSkip(false);
   };
+
   return (
     <div>
       <h4>Get Cache Item</h4>
@@ -32,6 +40,7 @@ const CacheGetItem = () => {
           onChange={(e) => {
             setKey(e.target.value);
             setSkip(true);
+            setCacheData(null); // Clear previous data
           }}
           variant="outlined"
           xs={{marginBottom: 2}}
@@ -46,13 +55,14 @@ const CacheGetItem = () => {
           Get
         </Button>
       </Box>
-      {cacheItem.data !== undefined && !skip && (
+      {cacheData && !skip && !error && (
         <CacheItem
-          keyItem={cacheItem.data.Key}
-          value={cacheItem.data.Value}
-          expiration={cacheItem.data.Expiration}
+          keyItem={cacheData.Key}
+          value={cacheData.Value}
+          expiration={cacheData.Expiration}
         />
       )}
+      {error && <p style={{color: "red"}}>Error fetching cache item</p>}
     </div>
   );
 };

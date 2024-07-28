@@ -24,14 +24,14 @@ const CacheForm = (props) => {
       expiration: parseInt(expiration, 10),
     };
     submitForm(payload);
+    SetKey("");
+    SetValue("");
+    SetExpiration("");
   };
 
   useEffect(() => {
     if (CacheSetResponse.isSuccess) {
       props.handleClose();
-      SetKey("");
-      SetValue("");
-      SetExpiration("");
     }
   }, [CacheSetResponse]);
 
