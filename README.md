@@ -47,7 +47,7 @@ Open a New terminal window
 3. Start the front end development server:
     ```sh
     npm run dev
-### API Endpoints
+## API Endpoints
 - `GET /get?key={key}`: Get the CacheItem for the key
 - `POST /set`: Set a key-value pair with expiration. The request body should be a JSON object like 
 `{"key": "A", "value": "valueA", "expiration": 10}`
@@ -55,11 +55,11 @@ Open a New terminal window
 - `GET /cache/state`: Get the current state of the cache
 - `ws://localhost:8000/ws`: Websocket endpoint to get real-time updates of the cache state.
 
-### Running Tests
+## Running Tests
 1. Navigate to backend directory and type the command
     ```sh
     go test ./pkg/cache
-### Acknowledgments
+## Acknowledgments
 - [Gin](https://github.com/gin-gonic/gin) for the HTTP web framework
 - [Gorilla Websocket](https://github.com/gorilla/websocket) for Websocket support
 - [React](https://reactjs.org) and [Redux Toolkit](https://redux-toolkit.js.org) for the front end
