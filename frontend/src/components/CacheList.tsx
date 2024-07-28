@@ -11,7 +11,10 @@ const CacheList = (props) => {
   };
   return (
     <div>
-      <h2>Cache state</h2>
+      <div style={{display: "flex", alignItems: "center"}}>
+        <h2 style={{marginRight: "8px"}}>Cache state</h2>
+        <em>(State managed by Websocket Connection)</em>
+      </div>
       {props.data &&
       typeof props.data === "object" &&
       Object.keys(props.data).length > 0 ? (

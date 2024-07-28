@@ -20,7 +20,10 @@ const CacheGetAPI = () => {
   }, [cacheKey]);
   return (
     <div>
-      <h2>Get from API</h2>
+      <div style={{display: "flex", alignItems: "center"}}>
+        <h2 style={{marginRight: "8px"}}>Cache Data</h2>
+        <em>(State managed by Get API call)</em>
+      </div>
       {data.data !== null && data.data !== undefined && data.data.length > 0 ? (
         data.data.map((value) => (
           <CacheItem

@@ -48,6 +48,7 @@ const CacheDisplay = () => {
   return (
     <div>
       <h1>LRU Display</h1>
+      <em>The cache has a capacity of <strong>5</strong> items. Items are evicted based on the Least Recently Used (LRU) policy when the capacity is reached.</em>
       <Grid container>
         <Grid item xs={9}>
           <CacheList data={cacheState} />
