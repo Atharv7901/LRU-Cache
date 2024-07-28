@@ -17,7 +17,6 @@ const CacheForm = (props) => {
   const [submitForm, CacheSetResponse] = useSetCacheItemMutation();
 
   const handleFormSubmit = () => {
-    console.log("Inside this function");
     const payload = {
       key: key,
       value: value,

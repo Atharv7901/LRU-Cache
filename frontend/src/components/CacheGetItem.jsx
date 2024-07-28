@@ -32,7 +32,7 @@ const CacheGetItem = () => {
 
   return (
     <div>
-      <h4>Get Cache Item</h4>
+      <h2>Get Cache Item</h2>
       <Box display="flex" gap={4}>
         <TextField
           label="Key"
@@ -40,7 +40,7 @@ const CacheGetItem = () => {
           onChange={(e) => {
             setKey(e.target.value);
             setSkip(true);
-            setCacheData(null); // Clear previous data
+            setCacheData(null); 
           }}
           variant="outlined"
           xs={{marginBottom: 2}}

@@ -20,8 +20,7 @@ const CacheGetAPI = () => {
   }, [cacheKey]);
   return (
     <div>
-      <h4>Get from API</h4>
-      {console.log("cacheeee", data)}
+      <h2>Get from API</h2>
       {data.data !== null && data.data !== undefined && data.data.length > 0 ? (
         data.data.map((value) => (
           <CacheItem

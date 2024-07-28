@@ -11,7 +11,7 @@ const CacheList = (props) => {
   };
   return (
     <div>
-      <h4>Cache state</h4>
+      <h2>Cache state</h2>
       {props.data &&
       typeof props.data === "object" &&
       Object.keys(props.data).length > 0 ? (

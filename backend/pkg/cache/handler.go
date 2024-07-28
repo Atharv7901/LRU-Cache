@@ -1,7 +1,6 @@
 package cache
 
 import (
-	"fmt"
 	"net/http"
 	"time"
 
@@ -60,7 +59,6 @@ func (h *CacheHandler) SetHandler(c *gin.Context) {
 
 func (h *CacheHandler) DeleteHandler(c *gin.Context) {
 	key := c.Query("key")
-	fmt.Println("inside this habdler")
 	h.Cache.Delete(key)
 	c.Status(http.StatusOK)
 }
