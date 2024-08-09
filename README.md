@@ -1,5 +1,5 @@
 # LRU Cache with Rest API and Websocket
-This project implements and LRU (Least Recently Used) Cache in Go with a REST API for "GET", "SET" and "DELETE" operations, and a Websocket endpoint to dynamically reflect the current state of the cache.
+This project implements and LRU (Least Recently Used) Cache in Go with a REST API for "GET", "POST" and "DELETE" operations, and a Websocket endpoint to dynamically reflect the current state of the cache.
 The front end is built using React and Redux Toolkit (RTK) for state management
 
 ## Features
